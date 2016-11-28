@@ -4,7 +4,7 @@ Persona::Persona(const char * nombre,
                 const char * apellido,
                 int dni){
 
-    this->dni=1;
+    this->dni=dni;
     this->nombre = copiarstr(nombre);
     this->apellido = copiarstr(apellido);
 
@@ -28,7 +28,8 @@ char * Persona::copiarstr(const char * origen) const{
 
 ostream & operator <<(ostream &s, const Persona &obj){
     s << "Nombre: " << (obj.nombre?obj.nombre:"Sin nombre.")<<endl
-      << "Apellido" << (obj.apellido?obj.apellido:"Sin apellido.");
+      << "Apellido: " << (obj.apellido?obj.apellido:"Sin apellido.") << endl
+       << "Dni: " << obj.dni <<endl;
     return s;
 }
 
@@ -56,5 +57,27 @@ Persona & Persona::operator =(const Persona &obj){
     ){
         cerr << "Memoria insuficiente";
     }
+    this->dni = obj.dni;
+    return *this;
+}
+
+Persona Persona::operator + (const Persona &obj) const{
+    Persona n = obj;
+    n.dni += this->dni;
+    return n;
+}
+
+int Persona::operator + (int nro) const{
+    return this->dni + nro;
+}
+
+Persona Persona::operator ++(int i){
+    Persona n = *this;
+    operator++();
+    return n;
+}
+
+Persona & Persona::operator ++(){
+    this->dni+=1;
     return *this;
 }

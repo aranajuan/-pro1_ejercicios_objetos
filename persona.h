@@ -28,6 +28,14 @@ class Persona{
         bool operator != (const Persona &obj) const;
 
         Persona & operator = (const Persona &obj);
+
+        Persona operator + (const Persona &obj) const;
+
+        int operator + (int nro) const;
+
+        Persona operator ++(int i);
+
+        Persona & operator ++();
 };
 
 #endif // PERSONA_H_INCLUDED
